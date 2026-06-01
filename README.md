@@ -20,20 +20,20 @@ This project treats MJ縮退マップ as a shrink/fallback mapping, not as a cla
 
 ## Source Attribution
 
-MJ縮退マップ is provided under the Creative Commons Attribution-ShareAlike 2.1 Japan license.
+MJ縮退マップ is provided under CC BY-SA 2.1 JP, formally the Creative Commons Attribution-ShareAlike 2.1 Japan license.
 
 When using this data, explicitly state that MJ縮退マップ is a copyrighted work of IPA.
 
 Suggested attribution:
 
 ```text
-本サービスは、IPAの著作物である文字情報基盤 縮退マップ（MJ縮退マップ）を利用しています。
-MJ縮退マップはクリエイティブ・コモンズ 表示 - 継承 2.1 日本 ライセンスで提供されています。
+本サービスは、IPAの著作物である文字情報基盤 縮退マップ（MJ縮退マップ）を利用して生成した検索データを使用しています。
+MJ縮退マップはクリエイティブ・コモンズ 表示 - 継承 2.1 日本 ライセンス（CC BY-SA 2.1 JP）で提供されています。
 ```
 
 License:
 
-- Creative Commons Attribution-ShareAlike 2.1 Japan: https://creativecommons.org/licenses/by-sa/2.1/jp/
+- CC BY-SA 2.1 JP: https://creativecommons.org/licenses/by-sa/2.1/jp/
 
 Upstream disclaimer:
 
@@ -43,7 +43,7 @@ Upstream disclaimer:
 
 Project source code is licensed under the MIT License. See `LICENSE`.
 
-MJ縮退マップ source data, MJ文字情報一覧表 source data, and generated lookup data derived from those sources are not MIT-licensed project code. If distributed, MJ縮退マップ-derived data must be handled under the applicable upstream data terms, including Creative Commons Attribution-ShareAlike 2.1 Japan and the required IPA attribution.
+MJ縮退マップ source data, MJ文字情報一覧表 source data, and generated lookup data derived from those sources are not MIT-licensed project code. If distributed, MJ縮退マップ-derived data must be handled under the applicable upstream data terms, including CC BY-SA 2.1 JP and the required IPA attribution.
 
 The committed `data/shrink-lookup.json` file is generated MJ-derived data. See `NOTICE.md` and `data/README.md` for details.
 

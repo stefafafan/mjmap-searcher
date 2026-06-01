@@ -8,13 +8,13 @@ The source code in this repository is licensed under the MIT License. See `LICEN
 
 This project is designed to use 文字情報基盤 縮退マップ（MJ縮退マップ） as a source dataset.
 
-MJ縮退マップ is a copyrighted work of IPA and is provided under the Creative Commons Attribution-ShareAlike 2.1 Japan license.
+MJ縮退マップ is a copyrighted work of IPA and is provided under CC BY-SA 2.1 JP, formally the Creative Commons Attribution-ShareAlike 2.1 Japan license.
 
 Attribution:
 
 ```text
-本サービスは、IPAの著作物である文字情報基盤 縮退マップ（MJ縮退マップ）を利用しています。
-MJ縮退マップはクリエイティブ・コモンズ 表示 - 継承 2.1 日本 ライセンスで提供されています。
+本サービスは、IPAの著作物である文字情報基盤 縮退マップ（MJ縮退マップ）を利用して生成した検索データを使用しています。
+MJ縮退マップはクリエイティブ・コモンズ 表示 - 継承 2.1 日本 ライセンス（CC BY-SA 2.1 JP）で提供されています。
 ```
 
 Source:
@@ -42,6 +42,6 @@ Source:
 
 The committed `data/shrink-lookup.json` file and any other generated lookup files derived from MJ縮退マップ or MJ文字情報一覧表 are not covered by this repository's MIT License.
 
-If generated data is distributed, publish it under the applicable upstream data license terms, including Creative Commons Attribution-ShareAlike 2.1 Japan for MJ縮退マップ-derived data, with the required attribution above.
+If generated data is distributed, publish it under the applicable upstream data license terms, including CC BY-SA 2.1 JP for MJ縮退マップ-derived data, with the required attribution above.
 
 See `data/README.md` for the data-specific notice.

@@ -7,18 +7,18 @@
 
 The project source code is licensed under MIT, but this generated data is not MIT-licensed project code.
 
-MJ縮退マップ is a copyrighted work of IPA and is provided under the Creative Commons Attribution-ShareAlike 2.1 Japan license.
+MJ縮退マップ is a copyrighted work of IPA and is provided under CC BY-SA 2.1 JP, formally the Creative Commons Attribution-ShareAlike 2.1 Japan license.
 
 Attribution:
 
 ```text
 本データは、IPAの著作物である文字情報基盤 縮退マップ（MJ縮退マップ）を利用して生成されています。
-MJ縮退マップはクリエイティブ・コモンズ 表示 - 継承 2.1 日本 ライセンスで提供されています。
+MJ縮退マップはクリエイティブ・コモンズ 表示 - 継承 2.1 日本 ライセンス（CC BY-SA 2.1 JP）で提供されています。
 ```
 
 License:
 
-- Creative Commons Attribution-ShareAlike 2.1 Japan: https://creativecommons.org/licenses/by-sa/2.1/jp/
+- CC BY-SA 2.1 JP: https://creativecommons.org/licenses/by-sa/2.1/jp/
 
 Upstream disclaimer:
 
