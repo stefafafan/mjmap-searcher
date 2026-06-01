@@ -1,0 +1,15 @@
+node_modules/
+.pnpm-store/
+dist/
+.vite/
+coverage/
+
+# Local upstream source datasets are intentionally not committed because they
+# have their own license. Generated lookup data is committed under data/.
+.generated/
+*.db
+*.sqlite
+*.sql
+MJShrinkMap*.json
+MJSU*.json
+mji*.xlsx
