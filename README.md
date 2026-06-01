@@ -1,10 +1,10 @@
 # mjmap-searcher
 
-A simple web service for finding and selecting Japanese character shrink　candidates.
+A simple web service for finding and selecting Japanese character shrink candidates.
 
 ## Goal
 
-The service helps users handle characters such as name/address variants by using　MJ縮退マップ as the primary data source.
+The service helps users handle characters such as name/address variants by using MJ縮退マップ as the primary data source.
 
 Use cases:
 
