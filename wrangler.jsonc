@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "moji",
-  "compatibility_date": "2026-06-02",
+  "compatibility_date": "2026-05-28",
   "main": "./src/index.ts",
   "assets": {
     "binding": "ASSETS",

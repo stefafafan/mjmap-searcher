@@ -98,7 +98,7 @@ pnpm build
 Deploy command:
 
 ```sh
-pnpm deploy
+pnpm exec wrangler deploy
 ```
 
 Worker 名は `wrangler.jsonc` の `name` と同じ `moji` にしてください。Hono の自動検出に任せず、リポジトリ内の `wrangler.jsonc` と `vite.config.ts` を使ってデプロイします。
@@ -106,8 +106,10 @@ Worker 名は `wrangler.jsonc` の `name` と同じ `moji` にしてください
 手元から Wrangler でデプロイする場合は、Cloudflare にログインした状態で以下を実行します。
 
 ```sh
-pnpm deploy
+pnpm run deploy
 ```
+
+`pnpm deploy` は pnpm の組み込みコマンドとして解釈されるため、このプロジェクトの deploy script は実行されません。
 
 ## API
 
