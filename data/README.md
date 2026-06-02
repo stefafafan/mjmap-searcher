@@ -1,6 +1,6 @@
 # データ
 
-`shrink-lookup.json` は、MJ縮退マップ（https://moji.or.jp/mojikiban/map/）と MJ文字情報一覧表（https://moji.or.jp/mojikiban/mjlist/）から生成した検索用ファイルです。
+`shrink-lookup.json` は、[MJ縮退マップ](https://moji.or.jp/mojikiban/map/) と [MJ文字情報一覧表](https://moji.or.jp/mojikiban/mjlist/) から生成した検索用ファイルです。
 
 このリポジトリのソースコードは MIT License ですが、生成済みデータは MIT License の対象ではありません。
 
