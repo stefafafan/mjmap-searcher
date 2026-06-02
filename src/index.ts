@@ -49,6 +49,8 @@ const invalidChar = () =>
     { status: 400 },
   )
 
+const notFound = () => Response.json({ error: 'not_found' }, { status: 404 })
+
 export const createApp = (characterLookup?: CharacterLookup) => {
   const app = new Hono<{ Bindings: Bindings }>()
 
@@ -68,6 +70,16 @@ export const createApp = (characterLookup?: CharacterLookup) => {
   )
 
   app.get('/', (c) => c.html(renderIndexPage()))
+
+  app.get('/fonts/*', (c) => {
+    const assets = c.env?.ASSETS
+
+    if (assets === undefined) {
+      return notFound()
+    }
+
+    return assets.fetch(c.req.raw)
+  })
 
   app.get('/api/health', (c) => c.json({ ok: true }))
 

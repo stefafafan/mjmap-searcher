@@ -5,6 +5,12 @@ export const renderIndexPage = (): string => `<!doctype html>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MJ縮退マップ検索</title>
     <style>
+      @font-face {
+        font-family: "MJMap Glyphs";
+        src: url("/fonts/mjmap-glyphs.woff2") format("woff2");
+        font-display: block;
+      }
+
       :root {
         color-scheme: light;
         --bg: #f7f5f1;
@@ -135,7 +141,9 @@ export const renderIndexPage = (): string => `<!doctype html>
         border-radius: 6px;
         background: var(--panel);
         color: var(--ink);
-        font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif CJK JP", serif;
+        font-family:
+          "MJMap Glyphs", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif CJK JP",
+          serif;
         font-size: 2.25rem;
         line-height: 1;
         padding: 0.5rem 0.875rem;
@@ -220,7 +228,9 @@ export const renderIndexPage = (): string => `<!doctype html>
       }
 
       .glyph {
-        font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif CJK JP", serif;
+        font-family:
+          "MJMap Glyphs", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif CJK JP",
+          serif;
         font-size: clamp(4rem, 11vw, 6.5rem);
         line-height: 1;
       }
@@ -293,6 +303,13 @@ export const renderIndexPage = (): string => `<!doctype html>
             本サービスは、IPAの著作物である
             <a href="https://moji.or.jp/mojikiban/map/" rel="license noreferrer" target="_blank">文字情報基盤 縮退マップ（MJ縮退マップ）</a>
             を利用して生成した検索データを使用しています。MJ縮退マップはクリエイティブ・コモンズ 表示-継承 2.1 日本 ライセンス（CC BY-SA 2.1 JP）で提供されています。
+          </p>
+          <p class="attribution">
+            文字表示には、
+            <a href="https://moji.or.jp/mojikiban/font/" rel="noreferrer" target="_blank">IPAmj明朝フォント</a>
+            から、このサービスの検索データに現れる文字を subset 化して生成した Web フォントを使用しています。この Web フォントは
+            <a href="/fonts/IPA_Font_License_Agreement_v1.0.txt">IPAフォントライセンス v1.0</a>
+            で提供されています。
           </p>
           <p class="repo-link">
             ソースコード:

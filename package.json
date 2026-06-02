@@ -12,6 +12,7 @@
   },
   "homepage": "https://github.com/stefafafan/mjmap-searcher#readme",
   "scripts": {
+    "build:font": "node scripts/build-font.mjs",
     "build:lookup": "node scripts/build-lookup.mjs",
     "build": "vite build",
     "dev": "vite --host 127.0.0.1",

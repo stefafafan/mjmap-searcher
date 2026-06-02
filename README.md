@@ -15,8 +15,11 @@
 
 - MJ縮退マップ: https://moji.or.jp/mojikiban/map/
 - MJ文字情報一覧表: https://moji.or.jp/mojikiban/mjlist/
+- IPAmj明朝フォント: https://moji.or.jp/mojikiban/font/
 
 このプロジェクトでは、MJ縮退マップを縮退・代替候補の対応表として利用します。掲載されている文字同士が、法的・意味的に常に同一であると主張するものではありません。
+
+文字表示には、IPAmj明朝フォントから、このプロジェクトの検索データに現れる文字を対象に subset 化して生成した Web フォント `public/fonts/mjmap-glyphs.woff2` を使用します。利用者の端末にインストールされたフォントには依存しません。
 
 ## 出典・ライセンス表示
 
@@ -35,6 +38,10 @@ IPAは、利用者がMJ縮退マップを用いて行う一切の行為につい
 MJ縮退マップ、MJ文字情報一覧表、およびそれらから生成した検索データは、このリポジトリの MIT License の対象ではありません。配布する場合は、上流データのライセンス条件に従ってください。
 
 コミット済みの `data/shrink-lookup.json` は、MJ関連データから生成した検索データです。詳細は `data/README.md` を参照してください。
+
+`public/fonts/mjmap-glyphs.woff2` は、IPAmj明朝フォント v006.01 から、このプロジェクトの検索データに現れる文字を対象に subset 化して生成した Web フォントです。IPAフォントライセンス v1.0 上は派生プログラムとして扱い、同ライセンスの条件で提供します。詳細は `public/fonts/README.md` を参照してください。
+
+IPAmj明朝フォント、この Web フォント、および IPAフォントライセンス v1.0 の対象物は、このリポジトリの MIT License の対象ではありません。
 
 ## ローカル開発
 
@@ -61,6 +68,17 @@ pnpm build:lookup
 
 ```sh
 pnpm build:lookup MJShrinkMap.1.2.0.json data/shrink-lookup.json mji.00602.xlsx
+```
+
+ローカルにダウンロードした IPAmj明朝フォントから、検索画面用の subset Web フォントを生成します。この処理には Python の `fonttools` と `brotli` が必要です。
+
+```sh
+IPAMJ_FONT_TTF_PATH=ipamjm.ttf \
+IPAMJ_FONT_LICENSE_PATH=IPA_Font_License_Agreement_v1.0.txt \
+SHRINK_LOOKUP_PATH=data/shrink-lookup.json \
+IPAMJ_FONT_OUTPUT_PATH=public/fonts/mjmap-glyphs.woff2 \
+IPAMJ_FONT_LICENSE_OUTPUT_PATH=public/fonts/IPA_Font_License_Agreement_v1.0.txt \
+pnpm build:font
 ```
 
 ローカルの Vite/Hono サーバーを起動します。
