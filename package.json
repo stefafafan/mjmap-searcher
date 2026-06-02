@@ -2,7 +2,7 @@
   "name": "mjmap-searcher",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.33.4",
+  "packageManager": "pnpm@11.3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/stefafafan/mjmap-searcher.git"
