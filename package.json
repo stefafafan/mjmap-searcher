@@ -2,6 +2,14 @@
   "name": "mjmap-searcher",
   "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stefafafan/mjmap-searcher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stefafafan/mjmap-searcher/issues"
+  },
+  "homepage": "https://github.com/stefafafan/mjmap-searcher#readme",
   "scripts": {
     "build:lookup": "node scripts/build-lookup.mjs",
     "dev": "vite --host 127.0.0.1",
