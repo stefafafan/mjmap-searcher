@@ -51,6 +51,13 @@ const invalidChar = () =>
 
 const notFound = () => Response.json({ error: 'not_found' }, { status: 404 })
 
+const securityHeaders = {
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'X-Frame-Options': 'DENY',
+  'Permissions-Policy': 'clipboard-write=(self)',
+}
+
 export const createApp = (characterLookup?: CharacterLookup) => {
   const app = new Hono<{ Bindings: Bindings }>()
 
@@ -58,6 +65,14 @@ export const createApp = (characterLookup?: CharacterLookup) => {
     characterLookup === undefined
       ? getRuntimeLookup(assets, requestUrl)
       : Promise.resolve(characterLookup)
+
+  app.use('*', async (c, next) => {
+    await next()
+
+    for (const [name, value] of Object.entries(securityHeaders)) {
+      c.header(name, value)
+    }
+  })
 
   app.onError(() =>
     Response.json(

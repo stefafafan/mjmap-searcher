@@ -37,6 +37,15 @@ describe('API', () => {
     expect(html).toContain('縮退元候補')
   })
 
+  it('sets baseline security headers on frontend responses', async () => {
+    const response = await app.request('/')
+
+    expect(response.headers.get('x-content-type-options')).toBe('nosniff')
+    expect(response.headers.get('referrer-policy')).toBe('strict-origin-when-cross-origin')
+    expect(response.headers.get('x-frame-options')).toBe('DENY')
+    expect(response.headers.get('permissions-policy')).toBe('clipboard-write=(self)')
+  })
+
   it('returns shrink candidates for one character from the lookup store', async () => {
     const response = await app.request('/api/shrink?char=邊')
 
