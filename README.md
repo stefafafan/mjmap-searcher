@@ -81,7 +81,33 @@ pnpm test
 pnpm typecheck
 ```
 
-デプロイ時に元データをダウンロードしなくても動作するように、生成済みの検索用ファイルを `data/shrink-lookup.json` としてコミットしています。実行時はこの JSON ファイルを直接 import するため、Cloudflare Workers 向けのバンドルに含められます。
+デプロイ時に元データをダウンロードしなくても動作するように、生成済みの検索用ファイルを `data/shrink-lookup.json` としてコミットしています。
+
+## Cloudflare Workers
+
+このプロジェクトは Cloudflare Workers と Workers Static Assets で動作します。`data/shrink-lookup.json` は Worker script に直接 bundle せず、Static Assets binding の `ASSETS` から初回リクエスト時に読み込みます。これにより Worker 本体のサイズを小さく保ちます。
+
+Cloudflare Workers の Git 連携では、以下の設定にしてください。
+
+Build command:
+
+```sh
+pnpm build
+```
+
+Deploy command:
+
+```sh
+pnpm deploy
+```
+
+Worker 名は `wrangler.jsonc` の `name` と同じ `moji` にしてください。Hono の自動検出に任せず、リポジトリ内の `wrangler.jsonc` と `vite.config.ts` を使ってデプロイします。
+
+手元から Wrangler でデプロイする場合は、Cloudflare にログインした状態で以下を実行します。
+
+```sh
+pnpm deploy
+```
 
 ## API
 

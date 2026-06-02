@@ -3,6 +3,9 @@ node_modules/
 dist/
 .vite/
 coverage/
+.wrangler/
+.dev.vars*
+!.dev.vars.example
 
 # Local upstream source datasets are intentionally not committed because they
 # have their own license. Generated lookup data is committed under data/.

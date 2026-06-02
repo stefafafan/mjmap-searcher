@@ -1,10 +1,44 @@
 import { Hono } from 'hono'
-import lookupJson from '../data/shrink-lookup.json'
+import lookupAssetPath from '../data/shrink-lookup.json?url'
 import { toSingleCharacter } from './characters'
 import { createInMemoryLookup, type CharacterLookup, type LookupJson } from './lookup'
 import { renderIndexPage } from './page'
 
-const lookup = createInMemoryLookup(lookupJson as LookupJson)
+type AssetFetcher = {
+  fetch(input: Request | URL | string): Promise<Response>
+}
+
+type Bindings = {
+  ASSETS?: AssetFetcher
+}
+
+let runtimeLookupPromise: Promise<CharacterLookup> | null = null
+
+const loadRuntimeLookup = async (
+  assets: AssetFetcher | undefined,
+  requestUrl: string,
+): Promise<CharacterLookup> => {
+  if (assets === undefined) {
+    throw new Error('lookup assets binding is not configured')
+  }
+
+  const response = await assets.fetch(new URL(lookupAssetPath, requestUrl))
+
+  if (!response.ok) {
+    throw new Error(`lookup data could not be loaded: ${response.status}`)
+  }
+
+  return createInMemoryLookup((await response.json()) as LookupJson)
+}
+
+const getRuntimeLookup = (
+  assets: AssetFetcher | undefined,
+  requestUrl: string,
+): Promise<CharacterLookup> => {
+  runtimeLookupPromise ??= loadRuntimeLookup(assets, requestUrl)
+
+  return runtimeLookupPromise
+}
 
 const invalidChar = () =>
   Response.json(
@@ -15,8 +49,23 @@ const invalidChar = () =>
     { status: 400 },
   )
 
-export const createApp = (characterLookup: CharacterLookup) => {
-  const app = new Hono()
+export const createApp = (characterLookup?: CharacterLookup) => {
+  const app = new Hono<{ Bindings: Bindings }>()
+
+  const getLookup = (assets: AssetFetcher | undefined, requestUrl: string) =>
+    characterLookup === undefined
+      ? getRuntimeLookup(assets, requestUrl)
+      : Promise.resolve(characterLookup)
+
+  app.onError(() =>
+    Response.json(
+      {
+        error: 'internal_error',
+        message: 'internal server error',
+      },
+      { status: 500 },
+    ),
+  )
 
   app.get('/', (c) => c.html(renderIndexPage()))
 
@@ -29,7 +78,9 @@ export const createApp = (characterLookup: CharacterLookup) => {
       return invalidChar()
     }
 
-    return c.json(await characterLookup.findShrinkCandidates(char))
+    const lookup = await getLookup(c.env?.ASSETS, c.req.url)
+
+    return c.json(await lookup.findShrinkCandidates(char))
   })
 
   app.get('/api/reverse', async (c) => {
@@ -39,12 +90,14 @@ export const createApp = (characterLookup: CharacterLookup) => {
       return invalidChar()
     }
 
-    return c.json(await characterLookup.findReverseCandidates(char))
+    const lookup = await getLookup(c.env?.ASSETS, c.req.url)
+
+    return c.json(await lookup.findReverseCandidates(char))
   })
 
   return app
 }
 
-const app = createApp(lookup)
+const app = createApp()
 
 export default app

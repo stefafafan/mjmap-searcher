@@ -1,11 +1,6 @@
 import { defineConfig } from 'vite'
-import devServer from '@hono/vite-dev-server'
+import { cloudflare } from '@cloudflare/vite-plugin'
 
-export default defineConfig({
-  plugins: [
-    devServer({
-      entry: 'src/index.ts',
-    }),
-  ],
-})
-
+export default defineConfig(({ mode }) => ({
+  plugins: mode === 'test' ? [] : [cloudflare()],
+}))
