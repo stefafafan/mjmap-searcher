@@ -1,61 +1,50 @@
 # mjmap-searcher
 
-A simple web service for finding and selecting Japanese character shrink candidates.
+日本の人名・住所で使われる異体字について、MJ縮退マップをもとに縮退先候補と縮退元候補を検索するシンプルな Web サービスです。
 
-## Goal
+## 目的
 
-The service helps users handle characters such as name/address variants by using MJ縮退マップ as the primary data source.
+このサービスは、本人確認（eKYC）などで人名・住所に含まれる異体字を扱うための補助ツールです。
 
-Use cases:
+主な用途:
 
-- Find the common character a rare character can shrink to
-- Find rare characters that shrink to a given common character
+- 珍しい字体から、縮退先となる候補文字を探す
+- 一般的な文字から、その文字へ縮退される候補文字を探す
 
-## Data Source
+## データソース
 
 - MJ縮退マップ: https://moji.or.jp/mojikiban/map/
 - MJ文字情報一覧表: https://moji.or.jp/mojikiban/mjlist/
 
-This project treats MJ縮退マップ as a shrink/fallback mapping, not as a claim that all listed characters are legally or semantically identical.
+このプロジェクトでは、MJ縮退マップを縮退・代替候補の対応表として利用します。掲載されている文字同士が、法的・意味的に常に同一であると主張するものではありません。
 
-## Source Attribution
+## 出典・ライセンス表示
 
-MJ縮退マップ is provided under CC BY-SA 2.1 JP, formally the Creative Commons Attribution-ShareAlike 2.1 Japan license.
+このプロジェクトは、IPAの著作物である文字情報基盤 縮退マップ（MJ縮退マップ）を利用して生成した検索データを使用しています。
 
-When using this data, explicitly state that MJ縮退マップ is a copyrighted work of IPA.
+MJ縮退マップの出典は https://moji.or.jp/mojikiban/map/ です。著作権者は IPA です。MJ縮退マップは、クリエイティブ・コモンズ 表示-継承 2.1 日本 ライセンス（CC BY-SA 2.1 JP）で提供されています。ライセンスの内容は https://creativecommons.org/licenses/by-sa/2.1/jp/ を参照してください。
 
-Suggested attribution:
+上流データの免責事項:
 
-```text
-本サービスは、IPAの著作物である文字情報基盤 縮退マップ（MJ縮退マップ）を利用して生成した検索データを使用しています。
-MJ縮退マップはクリエイティブ・コモンズ 表示 - 継承 2.1 日本 ライセンス（CC BY-SA 2.1 JP）で提供されています。
-```
+IPAは、利用者がMJ縮退マップを用いて行う一切の行為について何ら責任を負いません。また、MJ縮退マップの利用または利用不能によって生じた損害について何ら責任を負いません。
 
-License:
+## リポジトリのライセンス
 
-- CC BY-SA 2.1 JP: https://creativecommons.org/licenses/by-sa/2.1/jp/
+このリポジトリのソースコードは MIT License です。詳細は `LICENSE` を参照してください。
 
-Upstream disclaimer:
+MJ縮退マップ、MJ文字情報一覧表、およびそれらから生成した検索データは、このリポジトリの MIT License の対象ではありません。配布する場合は、上流データのライセンス条件に従ってください。
 
-- IPA does not accept responsibility for results caused by applying, or being unable to apply, the dataset.
+コミット済みの `data/shrink-lookup.json` は、MJ関連データから生成した検索データです。詳細は `data/README.md` を参照してください。
 
-## Repository License
+## ローカル開発
 
-Project source code is licensed under the MIT License. See `LICENSE`.
-
-MJ縮退マップ source data, MJ文字情報一覧表 source data, and generated lookup data derived from those sources are not MIT-licensed project code. If distributed, MJ縮退マップ-derived data must be handled under the applicable upstream data terms, including CC BY-SA 2.1 JP and the required IPA attribution.
-
-The committed `data/shrink-lookup.json` file is generated MJ-derived data. See `NOTICE.md` and `data/README.md` for details.
-
-## Local Development
-
-Install dependencies:
+依存関係をインストールします。
 
 ```sh
 pnpm install
 ```
 
-Generate the local lookup file from locally downloaded source files:
+ローカルにダウンロードした元データから検索用ファイルを生成します。
 
 ```sh
 SHRINK_MAP_PATH=MJShrinkMap.1.2.0.json \
@@ -64,45 +53,45 @@ MJ_LIST_PATH=mji.00602.xlsx \
 pnpm build:lookup
 ```
 
-`SHRINK_MAP_PATH` contains the shrink relationships. `SHRINK_LOOKUP_PATH` controls where the generated lookup file is written.
+`SHRINK_MAP_PATH` には縮退関係を含むファイルを指定します。`SHRINK_LOOKUP_PATH` には生成される検索用ファイルの出力先を指定します。
 
-Set `MJ_LIST_PATH` to use MJ文字情報一覧表 for resolving `MJ文字図形名` entries into actual Unicode/IVS strings.
+`MJ_LIST_PATH` を指定すると、MJ文字情報一覧表を使って `MJ文字図形名` を実際の Unicode 文字列または IVS 付き文字列に解決します。
 
-You can also pass explicit paths:
+引数で明示的に指定することもできます。
 
 ```sh
 pnpm build:lookup MJShrinkMap.1.2.0.json data/shrink-lookup.json mji.00602.xlsx
 ```
 
-Start the local Vite/Hono server:
+ローカルの Vite/Hono サーバーを起動します。
 
 ```sh
 pnpm dev
 ```
 
-Run tests:
+テストを実行します。
 
 ```sh
 pnpm test
 ```
 
-Run type checking:
+型チェックを実行します。
 
 ```sh
 pnpm typecheck
 ```
 
-The generated lookup is committed at `data/shrink-lookup.json` so the site can run without downloading source datasets at deployment time. The runtime imports this JSON file directly so it can be bundled for Cloudflare Workers.
+デプロイ時に元データをダウンロードしなくても動作するように、生成済みの検索用ファイルを `data/shrink-lookup.json` としてコミットしています。実行時はこの JSON ファイルを直接 import するため、Cloudflare Workers 向けのバンドルに含められます。
 
-## APIs
+## API
 
 ```http
 GET /api/shrink?char=濵
 ```
 
-Returns shrink candidates for one input character. An ideographic variation sequence, such as `櫛󠄁`, is treated as one lookup unit.
+入力された 1 文字に対する縮退先候補を返します。`櫛󠄁` のような IVS 付き文字は、1 つの検索単位として扱います。
 
-With `curl`, percent-encode non-ASCII query values:
+`curl` で確認する場合は、非 ASCII のクエリ値をパーセントエンコードしてください。
 
 ```sh
 curl 'http://127.0.0.1:5173/api/shrink?char=%E6%BF%B5'
@@ -121,7 +110,7 @@ curl 'http://127.0.0.1:5173/api/shrink?char=%E6%BF%B5'
 GET /api/reverse?char=浜
 ```
 
-Returns characters that can shrink to the given character.
+入力された文字に縮退される候補文字を返します。
 
 ```json
 [
@@ -132,15 +121,15 @@ Returns characters that can shrink to the given character.
 ]
 ```
 
-If there are no candidates, the API returns an empty array.
+候補がない場合は空配列を返します。
 
 ```json
 []
 ```
 
-Candidates are ordered by administrative/source priority, not real-world usage frequency. The generated lookup uses signals such as relation source, `ホップ数`, `順位`, IVS usage, supplementary-plane usage, and MJ ID order.
+候補の順序は実社会での利用頻度ではなく、データ上の優先度にもとづきます。生成処理では、関係の種類、`ホップ数`、`順位`、IVS の有無、補助平面文字の有無、MJ ID の順序などを使って並び替えています。
 
-Invalid input should return `400 Bad Request`.
+不正な入力の場合は `400 Bad Request` を返します。
 
 ```json
 {

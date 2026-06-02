@@ -1,25 +1,13 @@
-# Data
+# データ
 
-`shrink-lookup.json` is generated lookup data derived from:
+`shrink-lookup.json` は、MJ縮退マップ（https://moji.or.jp/mojikiban/map/）と MJ文字情報一覧表（https://moji.or.jp/mojikiban/mjlist/）から生成した検索用ファイルです。
 
-- MJ縮退マップ: https://moji.or.jp/mojikiban/map/
-- MJ文字情報一覧表: https://moji.or.jp/mojikiban/mjlist/
+このリポジトリのソースコードは MIT License ですが、生成済みデータは MIT License の対象ではありません。
 
-The project source code is licensed under MIT, but this generated data is not MIT-licensed project code.
-
-MJ縮退マップ is a copyrighted work of IPA and is provided under CC BY-SA 2.1 JP, formally the Creative Commons Attribution-ShareAlike 2.1 Japan license.
-
-Attribution:
-
-```text
 本データは、IPAの著作物である文字情報基盤 縮退マップ（MJ縮退マップ）を利用して生成されています。
-MJ縮退マップはクリエイティブ・コモンズ 表示 - 継承 2.1 日本 ライセンス（CC BY-SA 2.1 JP）で提供されています。
-```
 
-License:
+MJ縮退マップの著作権者は IPA です。MJ縮退マップは CC BY-SA 2.1 JP で提供されています。ライセンスの内容は https://creativecommons.org/licenses/by-sa/2.1/jp/ を参照してください。
 
-- CC BY-SA 2.1 JP: https://creativecommons.org/licenses/by-sa/2.1/jp/
+上流データの免責事項:
 
-Upstream disclaimer:
-
-- IPA does not accept responsibility for results caused by applying, or being unable to apply, the dataset.
+IPAは、利用者がMJ縮退マップを用いて行う一切の行為について何ら責任を負いません。また、MJ縮退マップの利用または利用不能によって生じた損害について何ら責任を負いません。

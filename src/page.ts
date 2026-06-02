@@ -292,7 +292,7 @@ export const renderIndexPage = (): string => `<!doctype html>
           <p class="attribution">
             本サービスは、IPAの著作物である
             <a href="https://moji.or.jp/mojikiban/map/" rel="license noreferrer" target="_blank">文字情報基盤 縮退マップ（MJ縮退マップ）</a>
-            を利用して生成した検索データを使用しています。MJ縮退マップはクリエイティブ・コモンズ 表示 - 継承 2.1 日本 ライセンス（CC BY-SA 2.1 JP）で提供されています。
+            を利用して生成した検索データを使用しています。MJ縮退マップはクリエイティブ・コモンズ 表示-継承 2.1 日本 ライセンス（CC BY-SA 2.1 JP）で提供されています。
           </p>
           <p class="repo-link">
             ソースコード:
