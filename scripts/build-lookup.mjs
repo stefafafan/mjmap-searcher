@@ -132,11 +132,11 @@ const uniqueCandidates = (candidates) => {
 
 const decodeXml = (value) =>
   value
-    .replaceAll('&amp;', '&')
     .replaceAll('&lt;', '<')
     .replaceAll('&gt;', '>')
     .replaceAll('&quot;', '"')
     .replaceAll('&apos;', "'")
+    .replaceAll('&amp;', '&')
 
 const parseSharedStrings = (xml) =>
   [...xml.matchAll(/<si>([\s\S]*?)<\/si>/g)].map((match) =>
