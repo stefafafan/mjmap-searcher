@@ -4,3 +4,6 @@ packages:
 minimumReleaseAge: 10080
 ignoreScripts: true
 trustPolicy: no-downgrade
+minimumReleaseAgeExclude:
+  # Renovate security update: hono@4.12.25
+  - hono@4.12.25
