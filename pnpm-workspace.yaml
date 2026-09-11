@@ -4,3 +4,6 @@ packages:
 minimumReleaseAge: 10080
 ignoreScripts: true
 trustPolicy: no-downgrade
+minimumReleaseAgeExclude:
+  # Renovate security update: vitest@4.1.11
+  - vitest@4.1.11
